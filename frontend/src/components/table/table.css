@@ -1,0 +1,20 @@
+table {
+    width: 70%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px auto;
+    font-size: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+th, td {
+    padding: 12px 16px;
+    border: 1px solid #e5e5e5;
+    text-align: left;
+}
+
+th {
+    background-color: #c6e187;
+    font-weight: 500;
+    border-bottom-width: 2px;
+}

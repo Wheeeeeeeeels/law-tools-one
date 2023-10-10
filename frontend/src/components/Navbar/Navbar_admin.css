@@ -1,0 +1,79 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 30px;
+    background-color: #7dbec1;
+    margin-bottom: 100px; 
+    font-size: 14px;
+    /* opacity: 0.8; */
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .welcome-message {
+    margin-right: 10px;
+    font-size: 16px;
+    color: white;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    font-size: 14px; 
+  }
+  
+  .dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px; /* 添加圆角 */
+    padding: 5px 10px; /* 调整内边距 */
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #333; /* 更深的背景颜色 */
+    min-width: 150px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+    z-index: 1;
+    border-radius: 5px; /* 添加圆角 */
+  }
+  
+  .dropdown-content button {
+    color: white; /* 更改字体颜色为白色 */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border: none;
+    background: none;
+    text-align: left; /* 文本左对齐 */
+    width: 100%; /* 使按钮占据整个宽度 */
+  }
+  
+  .dropdown-content button:hover {
+    background-color: #555; /* 深色背景 */
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+
+.navbar-left {
+    float: left;
+    margin-right: 20px;
+}
+
+.navbar-logo {
+  width: 30px;  /* 调整为所需的大小 */
+  height: 30px; /* 如果是SVG图标，可能不需要这一行 */
+  margin-right: 10px; /* 根据需要调整间距 */
+}
+  

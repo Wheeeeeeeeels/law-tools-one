@@ -1,0 +1,5 @@
+.admin-home-navbar-logo {
+    width: 30px;  /* 调整为所需的大小 */
+    height: 30px; /* 如果是SVG图标，可能不需要这一行 */
+    margin-right: 10px; /* 根据需要调整间距 */
+  }
