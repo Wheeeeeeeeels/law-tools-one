@@ -31,3 +31,22 @@
     * cd frontend/
     * npm install --legacy-peer-deps
     * npm start
+
+## 项目截图
+
+* 登录/注册
+
+![](./doc/images/login_register.png)
+
+
+* 用户首页
+
+![](./doc/images/user_index.png)
+
+* 后台首页
+
+![](./doc/images/admin.png)
+
+* 采集截图
+
+![](./doc/images/snapshot_demo_1.png)
