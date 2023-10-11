@@ -20,3 +20,14 @@
     * 界面优化
     * 性能优化
     * 多端部署
+
+
+## 项目运行
+
+* 后端 - backend
+    * cd backend/
+    * uvicorn main:app --reload
+* 前端 - frontend
+    * cd frontend/
+    * npm install --legacy-peer-deps
+    * npm start

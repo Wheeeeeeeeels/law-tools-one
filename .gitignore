@@ -39990,3 +39990,4 @@ frontend/node_modules/@antv/g2/lib/interaction/action/element/highlight-by-color
 frontend/node_modules/@antv/g2/lib/interaction/action/element/highlight-by-color.js.map
 frontend/node_modules/@antv/g2/lib/interaction/action/element/highlight-by-x.d.ts
 frontend/node_modules/@antv/g2/lib/interaction/action/element/highlight-by-x.js
+frontend/package-lock.json
