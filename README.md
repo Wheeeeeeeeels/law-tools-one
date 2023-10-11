@@ -41,11 +41,11 @@
 
 * 用户首页
 
-![](./doc/images/user_index.png)
+![](./doc/images/user_index_home.png)
 
 * 后台首页
 
-![](./doc/images/admin.png)
+![](./doc/images/admin_index.png)
 
 * 采集截图
 
