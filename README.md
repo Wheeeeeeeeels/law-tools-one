@@ -41,7 +41,20 @@
 
 * 用户首页
 
-![](./doc/images/user_index_home.png)
+![](./doc/images/user-index-update.png)
+
+
+* 主体信息核查
+
+![](./doc/images/subject-info-check.png)
+
+* 新增主体信息审查
+
+![](./doc/images/subject-info-check-add.png)
+
+* 法律利器
+
+![](./doc/images/law-tools.png)
 
 * 后台首页
 
