@@ -13,7 +13,17 @@ import {
   Link as RouterLink,
   useLocation,
 } from "react-router-dom";
-import { Button, Progress, Layout, Menu, Dropdown, Anchor, Link, Divider } from "antd";
+import {
+  Button,
+  Progress,
+  Layout,
+  Menu,
+  Dropdown,
+  Anchor,
+  Link,
+  Divider,
+  Avatar,
+} from "antd";
 import {
   HomeOutlined,
   SearchOutlined,
@@ -24,6 +34,15 @@ import {
   AppstoreOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  UserSwitchOutlined,
+  ProfileOutlined,
+  DownOutlined,
+  DownCircleOutlined,
+  SlackOutlined,
+  OrderedListOutlined,
+  FileTextOutlined,
 } from "@ant-design/icons";
 import { UserIndex } from "./pages/Home/user_index/user_index";
 import { LegalTools } from "./pages/Home/legal_tools/legal_tools";
@@ -118,9 +137,19 @@ function App() {
               {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             </Button> */}
 
-            <div className="logo">
-              <h2>法查查</h2>
+            <div
+              className="logo"
+              style={{
+                marginLeft: 50,
+                fontFamily: "Microsoft YaHei, sans-serif",
+              }}
+            >
+              <h3>
+                <SlackOutlined style={{ marginRight: 4 }} />
+                <b>法查查</b>
+              </h3>
             </div>
+
             <Menu
               mode="inline"
               defaultSelectedKeys={["1"]}
@@ -171,28 +200,21 @@ function App() {
                 type="primary"
                 onClick={toggleCollapsed}
                 style={{
-                  marginTop:500,
+                  marginTop: 500,
                   marginBottom: 16,
-                  marginLeft:20
+                  marginLeft: 20,
                 }}
               >
                 {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               </Button>
             </Menu>
           </Sider>
-          {/* <Header style={{ background: '#fff', padding: 0 }}>
-                    <div style={{ float: 'right' }}>
-                        欢迎，
-                        <Dropdown menu={dropdownMenu}>
-                            <a href="#" onClick={e => e.preventDefault()} style={{ marginLeft: 8 }}>
-                                {welcomeUserName} <span style={{ fontSize: '10px' }}>▼</span>
-                            </a>
-                        </Dropdown>
-                    </div>
-                </Header> */}
-
           <Layout>
-            <Header className="site-layout-background" style={{ padding: 0 }} />
+            {/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
+            <Home
+              welcomeUserName={welcomeUserName}
+              setIsLoggedIn={setIsLoggedIn}
+            />
             <Content
               style={{
                 width: "100%",
@@ -202,7 +224,7 @@ function App() {
               }}
             >
               <Routes>
-                <Route
+                {/* <Route
                   path="/"
                   element={
                     <Home
@@ -210,7 +232,7 @@ function App() {
                       setIsLoggedIn={setIsLoggedIn}
                     />
                   }
-                />
+                /> */}
                 <Route
                   path="/admin-dashboard"
                   element={
@@ -250,21 +272,90 @@ export function Home({ welcomeUserName, setIsLoggedIn }) {
   }, []);
 
   const handleLogout = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    console.log("Logging out...");
     setIsLoggedIn(false);
+    console.log("Logged out, navigating to /login...");
     navigate("/login");
   };
 
-  return (
-    <div className="App">
-      {/* <h1>{data ? data.key1 : "Loading..."},{welcomeUserName}</h1> */}
-      <Navbar userName={welcomeUserName} onLogout={handleLogout} />
-      {/* <QueryInfo /> */}
+  const home_menu = (
+    <Menu style={{ width: 140 }}>
+      <Menu.Item key="accountInfo">
+        <UserOutlined />
+        账户信息
+      </Menu.Item>
+      <Menu.Item key="myOrders">
+        <OrderedListOutlined />
+        我的订单
+      </Menu.Item>
+      <Menu.Item key="usageDetails">
+        <FileTextOutlined />
+        使用明细
+      </Menu.Item>
+      <Menu.Item key="logout" onClick={handleLogout}>
+        <LogoutOutlined />
+        退出登录
+      </Menu.Item>
+    </Menu>
+  );
 
-      <footer className="footer">
-        © 2023 zaka-tech. ·All rights reserved.
-      </footer>
-    </div>
+  const handleMenuClick = ({ key }) => {
+    // 处理下拉菜单项的点击事件
+    if (key === "userCenter") {
+      // 处理用户中心点击
+      // 可以导航到用户中心页面或执行其他操作
+    } else if (key === "profile") {
+      // 处理用户详情点击
+      // 可以导航到用户详情页面或执行其他操作
+    }
+  };
+
+  // return (
+  /* <Navbar userName={welcomeUserName} onLogout={handleLogout} /> */
+  //   <div className="App">
+  //     <h1>{data ? data.key1 : "Loading..."},{welcomeUserName}</h1>
+  //     <Navbar userName={welcomeUserName} onLogout={handleLogout} />
+  //     {/* <QueryInfo /> */}
+
+  //     <footer className="footer">
+  //       © 2023 zaka-tech. ·All rights reserved.
+  //     </footer>
+  //   </div>
+  // );
+
+  return (
+    <Header
+      className="site-layout-background"
+      style={{
+        padding: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      {/* Logo 和法查查文本 */}
+      <div className="logo" style={{ paddingLeft: 24 }}>
+        {/* <h2>法查查</h2> */}
+      </div>
+      {/* 用户头像和欢迎文本 */}
+      <div style={{ display: "flex", alignItems: "center", paddingRight: 24 }}>
+        {/* 下拉菜单 */}
+        VIP 权益 |
+        操作手册 |
+        联系客服 |
+        <UserOutlined style={{marginLeft:5, marginRight: 6 }} />
+        <Dropdown
+          overlay={home_menu}
+          trigger={["hover"]}
+          placement="bottomCenter"
+        >
+          <span style={{ cursor: "pointer" }}>
+            {welcomeUserName} <DownCircleOutlined style={{ marginLeft: 2 }} />
+          </span>
+        </Dropdown>
+      </div>
+    </Header>
   );
 }
 
@@ -344,7 +435,6 @@ function QueryInfo() {
   };
 
   return (
-    
     <div className="App">
       {/* <h2>Query Info</h2> */}
       <input

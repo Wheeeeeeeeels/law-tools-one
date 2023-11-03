@@ -7,8 +7,8 @@ export function UserIndex() {
   return (
     <>
       <h3 className="homepage-header">导航</h3>
-      <Row gutter={[16, 16]} style={{ marginLeft: '10px' }}>
-        <Col xs={24} sm={12} lg={8}>
+      <Row gutter={[16, 16]} style={{ marginLeft: '8px' }}>
+        <Col xs={22} sm={12} lg={8}>
           <Card title="主体信息核查" bordered={false} className="custom-card">
             <RouterLink to="/subject-info-check" className="card-link">立即使用</RouterLink>
           </Card>
