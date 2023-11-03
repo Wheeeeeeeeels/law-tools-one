@@ -1,0 +1,44 @@
+/* UserIndex.css */
+.header {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: left; /* 标题居左 */
+    font-family: 'Arial', sans-serif; /* 更改字体 */
+  }
+  
+  .custom-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    width: 100%; /* 卡片宽度调整为100% of the column width */
+    font-family: 'Arial', sans-serif; /* 更改卡片的字体 */
+  }
+  
+  .card-link {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    color: #1890ff; /* 使用 Ant Design 的主题蓝色 */
+    font-weight: bold;
+  }
+
+
+  /* UserIndex.css */
+
+.homepage-header {
+    font-size: 30px; /* 增加字体大小 */
+    margin-bottom: 20px;
+    text-align: center; /* 标题居中 */
+    padding-left: 10%; /* 或者使用margin-left根据需要调整 */
+    font-family: 'Georgia', serif; /* 改变字体风格 */
+  }
+  
+  
+  /* 响应式布局，适配不同屏幕大小 */
+  @media screen and (max-width: 576px) {
+    .custom-card {
+      margin-bottom: 20px;
+    }
+  }
+
+
+  
