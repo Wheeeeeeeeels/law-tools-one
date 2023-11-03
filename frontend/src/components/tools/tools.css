@@ -1,6 +1,7 @@
 /* 搜索框 */
 .search-input {
     width: 80%; 
+    margin-top: 40px;
     padding: 10px 15px;
     font-size: 1.5rem; 
     border: 1px solid #ccc;
@@ -49,3 +50,10 @@
     color: #888;
 } */
   
+.spider-progress-bar {
+    height: 20px;
+    background-color: #4CAF50;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+}
