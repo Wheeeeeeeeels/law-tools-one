@@ -65,6 +65,10 @@
 
 ![](./doc/images/usage_detail.png)
 
+* 会员充值页面
+
+![](./doc/images/user-vip.png)
+
 * 法律利器
 
 ![](./doc/images/law-tools.png)
