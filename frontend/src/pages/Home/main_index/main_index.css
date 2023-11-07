@@ -1,0 +1,143 @@
+
+/* CSS */
+
+
+/* main_index.css */
+.logo {
+  /* Adjust the width or margin as needed */
+  width: auto;
+  margin-right: 20px; /* Add margin to separate it from the menu */
+}
+
+/* Since we are using flex, we don't need float:right on the button container anymore */
+
+/* Ensure the menu items are aligned with the logo and buttons */
+.ant-menu-horizontal {
+  line-height: 64px; /* Adjust the line height to match the header height */
+}
+
+
+
+.carousel-prev-arrow, .carousel-next-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2; /* Make sure arrows are above the images */
+  color: #fff; /* Arrow color */
+  font-size: 24px; /* Arrow size */
+}
+
+.carousel-prev-arrow {
+  left: 10px;
+}
+
+.carousel-next-arrow {
+  right: 10px;
+}
+
+
+
+.carousel-container {
+    margin-top: 80px; /* Adjust the value as needed to create more space */
+  }
+
+  
+  /* Add this to your main_index.css */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensures the html and body tags span the full height */
+}
+
+.layout {
+  min-height: 100vh; /* This will make the layout take the full viewport height */
+}
+
+
+
+.slick-prev,
+.slick-next {
+  z-index: 1000;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translate(0, -50%);
+}
+
+
+/* Ensure the image covers the whole container, but maintains its aspect ratio */
+.carousel-container .carousel-image-container {
+  padding: 0; /* Remove padding if you want images to span the full width */
+}
+
+.carousel-container .carousel-image {
+  width: 100%;
+  max-height: 300px; /* Your fixed height */
+  object-fit: cover; /* This will cover the area, might crop the image */
+}
+
+
+.carousel-wrapper {
+  position: relative;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.carousel-arrow.left {
+  left: 10px;
+}
+
+.carousel-arrow.right {
+  right: 10px;
+}
+
+/* 这将覆盖你在 JSX 中设置的样式 */
+.carousel-arrow.left, .carousel-arrow.right {
+  /* 合并你的 JS 中的样式 */
+  color: #fff;
+  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  opacity: 0.75;
+  z-index: 2;
+}
+
+
+
+
+.image-button {
+  position: absolute;
+  top: 85%; /* Center vertically */
+  left: 30%; /* Adjust this value to move the button from the left side */
+  transform: translate(-50%, -50%);
+  z-index: 3; /* Ensure it's above the image */
+}
+
+
+.custom-button {
+  border: none;
+  color: white;
+  background: linear-gradient(to right, #8abd84, #FFA500); /* Adjust the colors to match your design */
+  border-radius: 10px;
+  padding: 5px 15px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  font-size: 15px;
+  height: auto; /* Adjust height as needed */
+  line-height: 1;
+}
+
+.custom-button:hover,
+.custom-button:focus {
+  color: white;
+  background: linear-gradient(to right, #e6c300, #ff9c00); /* Slightly darker gradient for hover/focus state */
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+

@@ -5,6 +5,7 @@ import { Register, Login } from "./pages/LoginAndRegister/login_register";
 import Navbar from "./components/Navbar/Navbar";
 import AdminDashboard from "./pages/Admin/admin_home/home";
 import WechatImage from "/Users/aigc/Downloads/fb-dev-projects/law-tool-one/frontend/src/assets/images/global/we.png";
+import { HomePage } from "./pages/Home/main_index/main_index";
 import moment from "moment";
 import {
   BrowserRouter as Router,
@@ -258,7 +259,13 @@ function App() {
               />
             }
           />
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route
+           path="/HomePage"
+           element = {
+            <HomePage/>
+           }
+           />
+          <Route path="*" element={<Navigate to="/HomePage" />} />
         </Routes>
       ) : (
         <Layout>
@@ -447,7 +454,7 @@ export function Home({ welcomeUserName, setIsLoggedIn }) {
     setIsLoggedIn(false);
     console.log("Logged out, navigating to /login...");
     setTimeout(() => {
-      navigate("/login");
+      navigate("/HomePage");
     }, 0);
   };
 
