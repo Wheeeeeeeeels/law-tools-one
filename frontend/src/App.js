@@ -5,6 +5,7 @@ import { Register, Login } from "./pages/LoginAndRegister/login_register";
 import Navbar from "./components/Navbar/Navbar";
 import AdminDashboard from "./pages/Admin/admin_home/home";
 import WechatImage from "/Users/aigc/Downloads/fb-dev-projects/law-tool-one/frontend/src/assets/images/global/we.png";
+import moment from "moment";
 import {
   BrowserRouter as Router,
   Routes,
@@ -30,6 +31,10 @@ import {
   Card,
   Select,
   InputNumber,
+  Affix,
+  Form,
+  Input,
+  List,
 } from "antd";
 import {
   HomeOutlined,
@@ -54,6 +59,7 @@ import {
   CrownOutlined,
   BookOutlined,
   CustomerServiceOutlined,
+  MessageOutlined,
 } from "@ant-design/icons";
 import { UserIndex } from "./pages/Home/user_index/user_index";
 import { LegalTools } from "./pages/Home/legal_tools/legal_tools";
@@ -71,6 +77,10 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const { Option } = Select;
 
+const initialMessages = [
+  // ...已有的留言
+];
+
 // import 'antd/dist/antd.css';
 
 function App() {
@@ -85,6 +95,39 @@ function App() {
   const { Link } = Anchor;
 
   const [sidebarContent, setSidebarContent] = useState("default");
+
+  const [isCommentModalVisible, setIsCommentModalVisible] = useState(false);
+  const [messages, setMessages] = useState(initialMessages);
+  const [form] = Form.useForm();
+
+  const showMomentModal = () => {
+    setIsCommentModalVisible(true);
+  };
+
+  const handleMomentOk = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        // 添加留言到留言列表
+        setMessages([
+          ...messages,
+          {
+            author: "当前用户", // 你可能需要从认证系统获取
+            content: values.message,
+            datetime: moment().toISOString(),
+          },
+        ]);
+        form.resetFields();
+        setIsCommentModalVisible(false);
+      })
+      .catch((info) => {
+        console.log("Validate Failed:", info);
+      });
+  };
+
+  const handleMomentCancel = () => {
+    setIsCommentModalVisible(false);
+  };
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -187,6 +230,14 @@ function App() {
 
   return (
     <Router>
+      <Affix style={{ position: "fixed", bottom: 50, right: 30 }}>
+        <Button
+          type="primary"
+          shape="circle"
+          icon={<MessageOutlined />}
+          onClick={showMomentModal}
+        />
+      </Affix>
       {!isLoggedIn ? (
         <Routes>
           <Route
@@ -304,6 +355,39 @@ function App() {
               </Routes>
             </Content>
             {/* <Footer style={{ textAlign: 'center' }}>© 2023 zaka-tech. ·All rights reserved.</Footer> */}
+            <Modal
+              title="留言板"
+              visible={isCommentModalVisible}
+              onOk={handleMomentOk}
+              onCancel={handleMomentCancel}
+              okText="提交"
+              cancelText="取消"
+            >
+              <Form form={form} name="messageForm">
+                <Form.Item
+                  name="message"
+                  rules={[{ required: true, message: "请输入你的留言!" }]}
+                >
+                  <Input.TextArea rows={4} placeholder="请输入你的留言" />
+                </Form.Item>
+              </Form>
+              <List
+                className="comment-list"
+                header={`${messages.length} 条留言`}
+                itemLayout="horizontal"
+                dataSource={messages}
+                renderItem={(item) => (
+                  <List.Item>
+                    <List.Item.Meta
+                      avatar={<Avatar src="用户头像链接" />}
+                      title={item.author}
+                      description={item.content}
+                    />
+                    <div>{item.datetime}</div>
+                  </List.Item>
+                )}
+              />
+            </Modal>
           </Layout>
         </Layout>
       )}
