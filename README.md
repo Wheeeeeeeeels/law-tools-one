@@ -73,6 +73,17 @@
 
 ![](./doc/images/law-tools.png)
 
+
+* 轮播首页
+
+![](./doc/images/main-page-1.png)
+
+![](./doc/images/main-page-2.png)
+
+* 留言
+
+![](./doc/images/comment.png)
+
 * 后台首页
 
 ![](./doc/images/admin_index.png)
