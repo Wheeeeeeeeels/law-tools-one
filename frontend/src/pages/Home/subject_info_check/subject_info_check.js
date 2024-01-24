@@ -188,13 +188,13 @@ export function SubjectInfoCheck() {
       >
         <h3>主体信息核查</h3>
         <div>
-          <Button icon={<DownloadOutlined />} style={{ marginRight: "10px" }}>
+          <Button icon={<DownloadOutlined />} style={{ marginRight: "10px",backgroundColor: "#333", color: "white" }}>
             批量下载
           </Button>
-          <Button icon={<RedoOutlined />} style={{ marginRight: "10px" }}>
+          <Button icon={<RedoOutlined />} style={{ marginRight: "10px",backgroundColor: "#333", color: "white" }}>
             批量重试
           </Button>
-          <Button type="default" icon={<DownloadOutlined />}>
+          <Button type="default" icon={<DownloadOutlined />} style={{marginLEft:"5px",backgroundColor: "#333", color: "white"}}>
             下载
           </Button>
           <Button
@@ -209,17 +209,18 @@ export function SubjectInfoCheck() {
       </div>
       <Divider />
 
-      <Tabs defaultActiveKey="1">
+      <Tabs defaultActiveKey="1"  >
         <TabPane tab="历史任务" key="1">
-          <div style={{ marginBottom: "20px" }}>
+          <div style={{ marginBottom: "20px",color:"white" }}>
             主体名称
             <span style={{ marginRight: "10px" }}></span>
             <Input
               placeholder="搜索..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ width: "200px", marginRight: "10px" }}
+              style={{ width: "200px", marginRight: "10px",color: "black" }}
               suffix={<SearchOutlined />}
+              
             />
             核查进度
             <span style={{ marginRight: "10px" }}></span>
@@ -254,7 +255,7 @@ export function SubjectInfoCheck() {
         </TabPane>
 
         <TabPane tab="定时任务" key="2">
-          <div style={{ marginBottom: "20px" }}>
+          <div style={{ marginBottom: "20px" ,color:"white"}}>
             主体名称
             <span style={{ marginRight: "10px" }}></span>
             <Input
@@ -263,6 +264,7 @@ export function SubjectInfoCheck() {
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{ width: "200px", marginRight: "10px" }}
               suffix={<SearchOutlined />}
+              
             />
             核查进度
             <span style={{ marginRight: "10px" }}></span>

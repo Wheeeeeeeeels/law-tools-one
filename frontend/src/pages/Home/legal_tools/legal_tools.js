@@ -11,6 +11,7 @@ import {
   Divider,
 } from "antd";
 import { useLocation } from "react-router-dom";
+import "./legal_tools.css"
 
 import {
   DownOutlined,
@@ -234,7 +235,7 @@ export function LegalTools() {
             fontFamily: 'Georgia, "Times New Roman", Times, serif', // 修改字体
             letterSpacing: "1px", // 增加字母间距
             marginBottom: "70px", // 根据需要调整margin-bottom
-            color: "#333", // 可以指定颜色，默认是黑色
+            color: "white", // 可以指定颜色，默认是黑色
           }}
         >
           数据合规
@@ -266,7 +267,7 @@ export function LegalTools() {
         >
           {displayedData.map((item, index) => (
             <Tooltip key={index} title={item.details} placement="bottom">
-              <Card style={{ width: "300px" }}>
+              <Card style={{ width: "300px"}}>
                 <a href={item.link} target="_blank" rel="noopener noreferrer">
                   {item.icon} <b>{item.text}</b>
                 </a>
@@ -289,7 +290,7 @@ export function LegalTools() {
             fontFamily: 'Georgia, "Times New Roman", Times, serif', // 修改字体
             letterSpacing: "1px", // 增加字母间距
             marginBottom: "70px", // 根据需要调整margin-bottom
-            color: "#333", // 可以指定颜色，默认是黑色
+            color: "white", // 可以指定颜色，默认是黑色
           }}
         >
           健康与生命科学

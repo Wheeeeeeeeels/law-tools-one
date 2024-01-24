@@ -10,6 +10,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     width: 100%; /* 卡片宽度调整为100% of the column width */
+    background-color: #141414; /* 深色背景 */
+    color: #fff; /* 白色文字 */
     font-family: 'Arial', sans-serif; /* 更改卡片的字体 */
   }
   
@@ -21,6 +23,16 @@
     font-weight: bold;
   }
 
+  body {
+    background-color: #000; /* 黑色背景 */
+    color: #fff; /* 白色文字 */
+  }
+
+  /* 卡片标题颜色 */
+.ant-card-head-title {
+  color: #fff;
+}
+
 
   /* UserIndex.css */
 
@@ -30,6 +42,17 @@
     text-align: center; /* 标题居中 */
     padding-left: 10%; /* 或者使用margin-left根据需要调整 */
     font-family: 'Georgia', serif; /* 改变字体风格 */
+    color: #fff;
+  }
+
+
+  .card-link {
+    color: #4a90e2; /* 蓝色链接，以保持可见度 */
+    text-decoration: none; /* 无下划线 */
+  }
+  
+  .card-link:hover {
+    color: #d1eaff; /* 悬浮时的颜色变浅 */
   }
   
   

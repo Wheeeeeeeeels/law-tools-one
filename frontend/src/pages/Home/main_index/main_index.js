@@ -148,15 +148,16 @@ const PageHeader = () => {
         justifyContent: "space-between",
         alignItems: "center",
         height: "64px",
+        backgroundColor: "#000",
       }}
     >
       <div className="logo" />
-      <SlackOutlined style={{ marginRight: 4 }} />
+      <SlackOutlined style={{ marginRight: 4, color: "#fff" }} />
       <Menu
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={["2"]}
-        style={{ flex: 1 }}
+        style={{ flex: 1, backgroundColor: "#000" }}
       >
         <Menu.Item key="1">
           <b>zaka-tech</b>
@@ -177,7 +178,7 @@ const PageHeader = () => {
           </Button>
         </Link>
         <Link to="/register">
-          <Button>注册</Button>
+        <Button style={{ backgroundColor: '#000', color: '#fff', borderColor: 'gray' }}>注册</Button>
         </Link>
       </div>
     </Header>
@@ -186,7 +187,9 @@ const PageHeader = () => {
 
 const PageFooter = () => {
   return (
-    <Footer style={{ textAlign: "center" }}>
+    <Footer
+      style={{ textAlign: "center", backgroundColor: "#000", color: "#fff" }}
+    >
       <b>Copyright © 2023 zaka-tech. All rights reserved.</b>
     </Footer>
   );
@@ -194,7 +197,7 @@ const PageFooter = () => {
 
 export const HomePage = () => {
   return (
-    <Layout className="layout">
+    <Layout className="layout" style={{ backgroundColor: "#000" }}>
       <PageHeader />
       <Content style={{ padding: "0 50px", marginTop: "20px", flexGrow: 1 }}>
         <CarouselContent />
@@ -215,8 +218,9 @@ export const HomePage = () => {
             <Col span={6} key={feature.title}>
               <div
                 style={{
-                  background: "#fff",
+                  background: "#000",
                   padding: "20px",
+                  color: "#fff",
                   textAlign: "center",
                 }}
               >
@@ -232,26 +236,38 @@ export const HomePage = () => {
         </Divider>
         <Row gutter={16}>
           <Col span={8}>
-            <Card cover={<img alt="贴合场景" src={main_page_1} />} bordered={false}>
+            <Card
+              cover={<img alt="贴合场景" src={main_page_1} />}
+              bordered={false}
+              style={{ backgroundColor: '#000' }}
+            >
               <Card.Meta
-                title="贴合场景"
-                description="zaka科技团队成员均来自券商、银行、律所等专业服务机构，已服务500多个资产证券化等项目，从业经验丰富，深刻了解金融从业人士的痛点，产品功能与用户使用场景紧密贴合。"
+                title={<div style={{ color: '#fff' }}>贴合场景</div>}
+                description={<div style={{ color: '#fff' }}>zaka科技团队成员均来自券商、银行、律所等专业服务机构，已服务500多个资产证券化等项目，从业经验丰富，深刻了解金融从业人士的痛点，产品功能与用户使用场景紧密贴合。</div>} 
+             />
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card
+              cover={<img alt="技术成熟" src={main_page_2} />}
+              bordered={false}
+              style={{ backgroundColor: '#000' }}
+            >
+              <Card.Meta
+                title={<div style={{ color: '#fff' }}>技术成熟</div>}
+                description={<div style={{ color: '#fff' }}>zaka科技的技术能力在各类金融业务场景已经过多年打磨，在zaka现有业务系统中稳定高效运行多年，积累了大量的场景和业务经验，技术成熟。</div>} 
               />
             </Card>
           </Col>
           <Col span={8}>
-            <Card cover={<img alt="技术成熟" src={main_page_2} />} bordered={false}>
+            <Card
+              cover={<img alt="灵活易用" src={main_page_3} />}
+              bordered={false}
+              style={{ backgroundColor: '#000' }}
+            >
               <Card.Meta
-                title="技术成熟"
-                description="zaka科技的技术能力在各类金融业务场景已经过多年打磨，在zaka现有业务系统中稳定高效运行多年，积累了大量的场景和业务经验，技术成熟。"
-              />
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card cover={<img alt="灵活易用" src={main_page_3} />} bordered={false}>
-              <Card.Meta
-                title="灵活易用"
-                description="开箱即用的完整平台，以及微服务的架构设计，使平台灵活易用及扩展。用户可按需选择账号订阅或本地部署，直接应用于各类金融、法律的业务场景。"
+                title={<div style={{ color: '#fff' }}>灵活易用</div>}
+                description={<div style={{ color: '#fff' }}>开箱即用的完整平台，以及微服务的架构设计，使平台灵活易用及扩展。用户可按需选择账号订阅或本地部署，直接应用于各类金融、法律的业务场景。</div>} 
               />
             </Card>
           </Col>
@@ -261,17 +277,14 @@ export const HomePage = () => {
         </Divider>
         <Row align="middle" style={{ width: "100%", padding: "20px" }}>
           <Col span={12} style={{ textAlign: "center" }}>
-           
-            <img
-              src={WechatImage}
-              alt="QR Code"
-              style={{ maxWidth: "10%" }}
-            />
+            <img src={WechatImage} alt="QR Code" style={{ maxWidth: "10%" }} />
             <p>扫码关注了解更多</p>
           </Col>
           <Col span={12} style={{ textAlign: "center" }}>
             <p>合作联系</p>
-            <a href="mailto:wheels.cs.work@gmail.com">wheels.cs.work@gmail.com</a>
+            <a href="mailto:wheels.cs.work@gmail.com">
+              wheels.cs.work@gmail.com
+            </a>
           </Col>
         </Row>
       </Content>

@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { Link,Navigate,useNavigate } from 'react-router-dom';
 import './login.css';
+
 // import particlesJS from 'particles.js';
 // import Particles from 'react-particles-js';
 // import {Particles} from "react-tsparticles";
@@ -18,6 +19,12 @@ export function Login({setIsLoggedIn,setWelcomeUserName}){
     //       console.log('particles.js loaded - callback');
     //     });
     //   }, []);
+
+    const containerStyle = {
+        backgroundImage: {},
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      };
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -41,7 +48,7 @@ export function Login({setIsLoggedIn,setWelcomeUserName}){
                 console.log("admin");
                 navigate('/admin-dashboard');
             }else{
-                navigate('/')
+                navigate('/user-index')
             }
         }else{
             setErrorMessage(data.error || "login fail,pls try again");
@@ -50,7 +57,7 @@ export function Login({setIsLoggedIn,setWelcomeUserName}){
     return (
         
         <div className="login-container">
-            
+            {/* <h1 className="brand-name">zaka-tech</h1> */}
             <div className="input-container">
                 <span className="icon">✉️</span>
                 <input
@@ -83,7 +90,7 @@ export function Login({setIsLoggedIn,setWelcomeUserName}){
                 <Link to="/register" className='register-link'>没有账号？点击这里注册</Link>
             </div>
             <footer className="footer">
-                © 2023 zaka-tech. ·All rights reserved.
+            Copyright © 2023 zaka-tech. ·All rights reserved. 
             </footer>
         </div>
     );
@@ -123,6 +130,7 @@ export function Register({setIsLoggedIn,setWelcomeUserName}){
     }
     return (
         <div className="login-container">
+             {/* <h1 className="brand-name"></h1> */}
             <div className="input-container">
                 <span className="icon">✉️</span>
                 <input
@@ -154,7 +162,7 @@ export function Register({setIsLoggedIn,setWelcomeUserName}){
 
             <button className="submit-btn" onClick={handleSubmit}>Register</button>
             <footer className="footer">
-                © 2023 zaka-tech. ·All rights reserved.
+            Copyright © 2023 zaka-tech. ·All rights reserved.
             </footer>
         </div>
     );

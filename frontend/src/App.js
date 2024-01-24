@@ -5,6 +5,9 @@ import { Register, Login } from "./pages/LoginAndRegister/login_register";
 import Navbar from "./components/Navbar/Navbar";
 import AdminDashboard from "./pages/Admin/admin_home/home";
 import WechatImage from "/Users/aigc/Downloads/fb-dev-projects/law-tool-one/frontend/src/assets/images/global/we.png";
+import main_page_14 from "/Users/aigc/Downloads/fb-dev-projects/law-tool-one/frontend/src/assets/images/global/main_page_14.jpeg";
+import main_page_13 from "/Users/aigc/Downloads/fb-dev-projects/law-tool-one/frontend/src/assets/images/global/main_page_13.jpeg";
+
 import { HomePage } from "./pages/Home/main_index/main_index";
 import moment from "moment";
 import {
@@ -94,12 +97,95 @@ function App() {
   };
 
   const { Link } = Anchor;
+  // const location = useLocation();
+  const currentPath = window.location.pathname; // 获取当前路径
+  const pathsToShowButton = ["/account-info", "/account-order-info", "/account-usage-details"]; // 定义显示按钮的路径
+
+
 
   const [sidebarContent, setSidebarContent] = useState("default");
 
   const [isCommentModalVisible, setIsCommentModalVisible] = useState(false);
   const [messages, setMessages] = useState(initialMessages);
+  const [isVIPModalVisible, setIsVIPModalVisible] = useState(false);
+  const [isContactVisible, setIsContactVisible] = useState(false);
+
   const [form] = Form.useForm();
+
+  const handleLogout = () => {
+    console.log("Logging out...");
+    setIsLoggedIn(false);
+    console.log("Logged out, navigating to /login...");
+    setTimeout(() => {
+      window.location.href = "/HomePage";
+    }, 0);
+  };
+
+  // const shouldShowBackButton = [
+  //   "/account-info",
+  //   "/account-order-info",
+  //   "/account-usage-details",
+  // ].includes(location.pathname);
+
+  const accountPaths = [
+    "/account-info",
+    "/account-order-info",
+    "/account-usage-details",
+  ];
+
+  // const handleBackToHome = () => {
+  //   setSidebarContent("default"); // Only reset sidebar content if needed
+  //   console.log("--> 查看是否set default");
+  //   window.location.href = "/user-index";
+  // };
+
+  const home_menu = (
+    <Menu style={{ width: 140 }}>
+      <Menu.Item key="accountInfo">
+        <RouterLink to="/account-info" />
+        <UserOutlined />
+        账户信息
+      </Menu.Item>
+      <Menu.Item key="myOrders">
+        <RouterLink to="/account-order-info" />
+        <OrderedListOutlined />
+        我的订单
+      </Menu.Item>
+      <Menu.Item key="usageDetails">
+        <RouterLink to="/account-usage-details" />
+        <FileTextOutlined />
+        使用明细
+      </Menu.Item>
+      <Menu.Item key="logout" onClick={handleLogout}>
+        <LogoutOutlined />
+        退出登录
+      </Menu.Item>
+    </Menu>
+  );
+
+  const showVIPModal = () => {
+    setIsVIPModalVisible(true);
+  };
+
+  const showContactModal = () => {
+    setIsContactVisible(true);
+  };
+
+  const handleVIPOk = () => {
+    setIsVIPModalVisible(false);
+  };
+
+  const handleContactOk = () => {
+    setIsContactVisible(false);
+  };
+
+  const handleVIPCancel = () => {
+    setIsVIPModalVisible(false);
+  };
+
+  const handleContactCancel = () => {
+    setIsContactVisible(false);
+  };
 
   const showMomentModal = () => {
     setIsCommentModalVisible(true);
@@ -150,6 +236,30 @@ function App() {
           </Menu.Item>
           <div className="menu-spacer"></div>
 
+          <div
+            className="toggle-button-container"
+            style={{
+              position: "absolute", // Or 'fixed' depending on your layout
+              bottom: "0px", // Align to the bottom
+              width: "100%", // Match the width of the sidebar
+              padding: "10px", // Add some padding
+            }}
+          >
+            <Button
+              type="primary"
+              block // This will make the button expand to full width
+              onClick={toggleCollapsed}
+              style={
+                {
+                  // Additional styles if necessary
+                  // marginBottom: '20px',
+                }
+              }
+            >
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </Button>
+          </div>
+
           {/* <Button
             type="primary"
             onClick={toggleCollapsed}
@@ -180,19 +290,20 @@ function App() {
           <Menu.SubMenu
             key="sub2"
             icon={<AppstoreOutlined />}
-            title={<RouterLink to="/legal-tools">法律利器</RouterLink>}
+            title={<span style={{ color: 'white' }}>法律利器</span>}
+            // title={<RouterLink to="/legal-tools">法律利器</RouterLink>}
           >
             <Menu.Item key="5">
               <Anchor>
                 {/* <Link href="/legal-tools#data_compliance" title="数据合规"/> */}
-                <RouterLink to="/legal-tools#data_compliance">
+                <RouterLink to="/legal-tools#data_compliance" style={{ color: 'white' }}>
                   数据合规
                 </RouterLink>
               </Anchor>
             </Menu.Item>
             <Menu.Item key="6">
               <Anchor>
-                <RouterLink href="#data_compliance" title="工具2">
+                <RouterLink href="#data_compliance" title="工具2" style={{ color: 'white' }}>
                   效率工具
                 </RouterLink>
               </Anchor>
@@ -207,17 +318,28 @@ function App() {
 
           <div className="menu-spacer"></div>
 
-          <Button
-            type="primary"
-            onClick={toggleCollapsed}
+          <div
+            className="toggle-button-container"
             style={{
-              marginTop: 500,
-              marginBottom: 16,
-              marginLeft: 20,
+              position: "absolute", // Or 'fixed' depending on your layout
+              bottom: "10px", // Align to the bottom
+              width: "100%", // Match the width of the sidebar
+              padding: "10px", // Add some padding
             }}
           >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          </Button>
+            <Button
+              type="primary"
+              block // This will make the button expand to full width
+              onClick={toggleCollapsed}
+              style={
+                {
+                  // Additional styles if necessary
+                }
+              }
+            >
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </Button>
+          </div>
         </>
       );
     }
@@ -259,25 +381,26 @@ function App() {
               />
             }
           />
-          <Route
-           path="/HomePage"
-           element = {
-            <HomePage/>
-           }
-           />
+          <Route path="/HomePage" element={<HomePage />} />
           <Route path="*" element={<Navigate to="/HomePage" />} />
         </Routes>
       ) : (
         <Layout>
-          <Sider
-            width={200}
-            collapsed={collapsed}
-            className="site-layout-background"
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between", // 保持两端对齐
+              paddingRight: 24,
+              color: "#fff",
+              backgroundColor: "#000",
+            }}
           >
+            {/* Logo部分 */}
             <div
               className="logo"
               style={{
-                marginLeft: 50,
+                marginLeft: 30,
                 fontFamily: "Microsoft YaHei, sans-serif",
               }}
             >
@@ -286,32 +409,114 @@ function App() {
                 <b>法查查</b>
               </h3>
             </div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+            {
+              pathsToShowButton.includes(currentPath) &&
+              <RouterLink to="/user-index">
+              <Button
+                style={{ marginLeft: "auto", marginRight: "10px" }}
+              >
+                返回首页
+              </Button>
+              </RouterLink>
+            }
 
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{ height: "100%", borderRight: 0 }}
-            >
-              {renderMenuItems()}
-            </Menu>
-          </Sider>
-          <Layout>
-            {/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
-            <Home
-              welcomeUserName={welcomeUserName}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-            <Content
+            {/* 右侧元素部分，将marginLeft设为auto将其推到最右边 */}
+            <div
               style={{
-                width: "100%",
-                height: "100vh",
-                background: `url(${backgroundImage}) no-repeat center center`,
-                backgroundSize: "cover",
+                marginLeft: "auto",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              <Routes>
-                {/* <Route
+              {/* VIP权益 */}
+              <div
+                style={{
+                  color: "#FFD700", // 金色
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+                onClick={showVIPModal}
+              >
+                <CrownOutlined style={{ marginRight: 5 }} /> VIP 权益
+              </div>
+              {/* 分隔符 */}
+              <span style={{ margin: "0 8px", color: "#ddd" }}>|</span>
+              {/* 操作手册 */}
+              <BookOutlined style={{ marginRight: 5 }} /> 操作手册 |
+              {/* 联系客服 */}
+              <div
+                onClick={showContactModal}
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "0 5px",
+                }}
+              >
+                <CustomerServiceOutlined style={{ marginRight: 3 }} /> 联系客服
+                |
+              </div>
+              {/* 用户信息 */}
+              <UserOutlined style={{ marginLeft: 5, marginRight: 1 }} />
+              <Dropdown
+                overlay={home_menu}
+                trigger={["hover"]}
+                placement="bottomCenter"
+              >
+                <span style={{ cursor: "pointer", color: "#fff" }}>
+                  <b>{welcomeUserName}</b>{" "}
+                  <DownCircleOutlined
+                    style={{ marginLeft: 2, color: "#fff" }}
+                  />
+                </span>
+              </Dropdown>
+            </div>
+          </div>
+          </div>
+
+          <Layout>
+            <Sider
+              height={150}
+              collapsed={collapsed}
+              className="site-layout-background"
+              style={{
+                background: "#000", // Sider background color
+                color: "#fff", // Sider text color
+              }}
+            >
+              <Menu
+                mode="inline"
+                defaultSelectedKeys={["1"]}
+                defaultOpenKeys={["sub1"]}
+                style={{
+                  height: "100%",
+                  borderRight: 0,
+                  background: "#000",
+                  color: "#fff",
+                }}
+              >
+                {renderMenuItems()}
+              </Menu>
+            </Sider>
+            <Layout>
+              {/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
+              <Home
+                welcomeUserName={welcomeUserName}
+                setIsLoggedIn={setIsLoggedIn}
+                setSidebarContent={setSidebarContent}
+              />
+              <Content
+                style={{
+                  width: "100%",
+                  height: "100vh",
+                  background: `url(${backgroundImage}) no-repeat center center`,
+                  backgroundSize: "cover",
+                }}
+              >
+                <Routes>
+                  {/* <Route
                   path="/"
                   element={
                     <Home
@@ -320,81 +525,204 @@ function App() {
                     />
                   }
                 /> */}
-                <Route
-                  path="/admin-dashboard"
-                  element={
-                    <AdminDashboard
-                      welcomeUserName={welcomeUserName}
-                      setIsLoggedIn={setIsLoggedIn}
-                    />
-                  }
+                  <Route
+                    path="/admin-dashboard"
+                    element={
+                      <AdminDashboard
+                        welcomeUserName={welcomeUserName}
+                        setIsLoggedIn={setIsLoggedIn}
+                      />
+                    }
+                  />
+                  <Route path="/user-index" element={<UserIndex />} />
+                  <Route
+                    path="/subject-info-check"
+                    element={<SubjectInfoCheck />}
+                  />
+                  <Route path="/legal-tools" element={<LegalTools />} />
+                  <Route path="/query-info" element={<QueryInfo />} />
+                  <Route
+                    path="/account-info"
+                    element={
+                      <AccountInfoPage
+                        setSidebarContent={setSidebarToAccount}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/account-order-info"
+                    element={
+                      <AccountOrderInfoPage
+                        setSidebarContent={setSidebarToAccount}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/account-usage-details"
+                    element={
+                      <AccountUsageDetailPage
+                        setSidebarContent={setSidebarToAccount}
+                      />
+                    }
+                  />
+                  <Route path="*" element={<Navigate to="/" />} />
+                </Routes>
+              </Content>
+              {/* <Footer style={{ textAlign: 'center' }}>© 2023 zaka-tech. ·All rights reserved.</Footer> */}
+              <Modal
+                title="留言板"
+                visible={isCommentModalVisible}
+                onOk={handleMomentOk}
+                onCancel={handleMomentCancel}
+                okText="提交"
+                cancelText="取消"
+              >
+                <Form form={form} name="messageForm">
+                  <Form.Item
+                    name="message"
+                    rules={[{ required: true, message: "请输入你的留言!" }]}
+                  >
+                    <Input.TextArea rows={4} placeholder="请输入你的留言" />
+                  </Form.Item>
+                </Form>
+                <List
+                  className="comment-list"
+                  header={`${messages.length} 条留言`}
+                  itemLayout="horizontal"
+                  dataSource={messages}
+                  renderItem={(item) => (
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={<Avatar src="用户头像链接" />}
+                        title={item.author}
+                        description={item.content}
+                      />
+                      <div>{item.datetime}</div>
+                    </List.Item>
+                  )}
                 />
-                <Route path="/user-index" element={<UserIndex />} />
-                <Route
-                  path="/subject-info-check"
-                  element={<SubjectInfoCheck />}
+              </Modal>
+              <Modal
+                title="VIP 权益"
+                visible={isVIPModalVisible}
+                onOk={handleVIPOk}
+                onCancel={handleVIPCancel}
+                footer={null} // Hide default footer if you're providing your own buttons
+                width={760} // You may need to adjust the width depending on your content
+                bodyStyle={{ backgroundColor: "#000", color: "#fff" }}
+              >
+                <Row gutter={16}>
+                  <Col span={6}>
+                    <Card
+                      title={
+                        <>
+                          <CrownOutlined style={{ color: "gold" }} />{" "}
+                          VIP年度权益
+                        </>
+                      }
+                      bordered={false}
+                      style={{ backgroundColor: "#000", color: "#fff" }}
+                    >
+                      <p>按年购买，更大优惠</p>
+                      <p>¥ 10000/年</p>
+                      <InputNumber
+                        min={1}
+                        max={100000}
+                        defaultValue={1}
+                        style={{ width: "100%" }}
+                      />
+                      <Button type="primary" style={{ marginTop: 16 }}>
+                        立即支付
+                      </Button>
+                      <p>注: 有效期内 10000次/年</p>
+                    </Card>
+                  </Col>
+                  <Col span={6}>
+                    <Card
+                      title={
+                        <>
+                          <CrownOutlined style={{ color: "gold" }} />{" "}
+                          VIP包月权益
+                        </>
+                      }
+                      bordered={false}
+                      style={{ backgroundColor: "#000", color: "#fff" }}
+                    >
+                      <p>按月购买，省时省心</p>
+                      <p>¥ 1000/月</p>
+                      {/* Use InputNumber for numeric input */}
+                      <InputNumber
+                        min={1}
+                        max={10000}
+                        defaultValue={1}
+                        style={{ width: "100%" }}
+                      />
+                      <Button type="primary" style={{ marginTop: 16 }}>
+                        立即支付
+                      </Button>
+                      <p>注: 有效期内 800次/月</p>
+                    </Card>
+                  </Col>
+                  <Col span={6}>
+                    <Card
+                      title={
+                        <>
+                          <CrownOutlined style={{ color: "gold" }} /> 次数权益
+                        </>
+                      }
+                      bordered={false}
+                      style={{ backgroundColor: "#000", color: "#fff" }}
+                    >
+                      <p>按需购买，随用随购</p>
+                      <p>¥ 3/次</p>
+                      {/* Use InputNumber for numeric input */}
+                      <InputNumber
+                        min={1}
+                        max={100000}
+                        defaultValue={1}
+                        style={{ width: "100%" }}
+                      />
+                      <Button type="primary" style={{ marginTop: 16 }}>
+                        立即支付
+                      </Button>
+                      <p>注：主体信息核查功能每核查1个主体按1次计算</p>
+                    </Card>
+                  </Col>
+                  <Col span={6}>
+                    {/* Assuming this is the card to the far right */}
+                    <Card
+                      bordered={false}
+                      className="vip-action-card"
+                      style={{ backgroundColor: "#000", color: "#fff" }}
+                    >
+                      <h3>高级VIP权益</h3>
+                      <p>量身定制，批量购买享更多优惠</p>
+                      <div className="vip-action-description">
+                        {/* Add any additional descriptive text here */}
+                        <p>专属客户经理为您量身定制需求</p>
+                      </div>
+                      <Button type="primary" className="vip-action-button">
+                        联系商务
+                      </Button>
+                    </Card>
+                  </Col>
+                </Row>
+              </Modal>
+
+              <Modal
+                title="联系客服"
+                visible={isContactVisible}
+                onOk={handleContactOk}
+                onCancel={handleContactCancel}
+                footer={null} // 如果不需要默认的底部按钮，可以设置为null
+              >
+                <img
+                  src={WechatImage}
+                  alt="WeChat QR Code"
+                  style={{ width: "60%" }}
                 />
-                <Route path="/legal-tools" element={<LegalTools />} />
-                <Route path="/query-info" element={<QueryInfo />} />
-                <Route
-                  path="/account-info"
-                  element={
-                    <AccountInfoPage setSidebarContent={setSidebarToAccount} />
-                  }
-                />
-                <Route
-                  path="/account-order-info"
-                  element={
-                    <AccountOrderInfoPage
-                      setSidebarContent={setSidebarToAccount}
-                    />
-                  }
-                />
-                <Route
-                  path="/account-usage-details"
-                  element={
-                    <AccountUsageDetailPage
-                      setSidebarContent={setSidebarToAccount}
-                    />
-                  }
-                />
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
-            </Content>
-            {/* <Footer style={{ textAlign: 'center' }}>© 2023 zaka-tech. ·All rights reserved.</Footer> */}
-            <Modal
-              title="留言板"
-              visible={isCommentModalVisible}
-              onOk={handleMomentOk}
-              onCancel={handleMomentCancel}
-              okText="提交"
-              cancelText="取消"
-            >
-              <Form form={form} name="messageForm">
-                <Form.Item
-                  name="message"
-                  rules={[{ required: true, message: "请输入你的留言!" }]}
-                >
-                  <Input.TextArea rows={4} placeholder="请输入你的留言" />
-                </Form.Item>
-              </Form>
-              <List
-                className="comment-list"
-                header={`${messages.length} 条留言`}
-                itemLayout="horizontal"
-                dataSource={messages}
-                renderItem={(item) => (
-                  <List.Item>
-                    <List.Item.Meta
-                      avatar={<Avatar src="用户头像链接" />}
-                      title={item.author}
-                      description={item.content}
-                    />
-                    <div>{item.datetime}</div>
-                  </List.Item>
-                )}
-              />
-            </Modal>
+              </Modal>
+            </Layout>
           </Layout>
         </Layout>
       )}
@@ -402,14 +730,11 @@ function App() {
   );
 }
 
-export function Home({ welcomeUserName, setIsLoggedIn }) {
+export function Home({ welcomeUserName, setIsLoggedIn, setSidebarContent }) {
   const [data, setData] = useState(null);
   const navigate = useNavigate();
   // 添加 下拉菜单
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const [isVIPModalVisible, setIsVIPModalVisible] = useState(false);
-  const [isContactVisible, setIsContactVisible] = useState(false);
 
   const location = useLocation();
 
@@ -419,29 +744,28 @@ export function Home({ welcomeUserName, setIsLoggedIn }) {
     "/account-usage-details",
   ].includes(location.pathname);
 
-  const showVIPModal = () => {
-    setIsVIPModalVisible(true);
+  const handleBackToHome = () => {
+    setSidebarContent("default"); // Only reset sidebar content if needed
+    console.log("--> 查看是否set default");
+    navigate("/user-index");
   };
 
-  const showContactModal = () => {
-    setIsContactVisible(true);
-  };
+  const accountPaths = [
+    "/account-info",
+    "/account-order-info",
+    "/account-usage-details",
+  ];
 
-  const handleVIPOk = () => {
-    setIsVIPModalVisible(false);
-  };
-
-  const handleContactOk = () => {
-    setIsContactVisible(false);
-  };
-
-  const handleVIPCancel = () => {
-    setIsVIPModalVisible(false);
-  };
-
-  const handleContactCancel = () => {
-    setIsContactVisible(false);
-  };
+  useEffect(() => {
+    // 检查当前的路径是否为账户相关的路径
+    if (accountPaths.includes(location.pathname)) {
+      // 如果是，设置sidebar为'account'
+      setSidebarContent("account");
+    } else {
+      // 如果不是，设置sidebar为'default'
+      setSidebarContent("default");
+    }
+  }, [location]); // 当路径变化时触发这个effect
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/")
@@ -449,209 +773,9 @@ export function Home({ welcomeUserName, setIsLoggedIn }) {
       .then((data) => setData(data));
   }, []);
 
-  const handleLogout = () => {
-    console.log("Logging out...");
-    setIsLoggedIn(false);
-    console.log("Logged out, navigating to /login...");
-    setTimeout(() => {
-      navigate("/HomePage");
-    }, 0);
-  };
-
-  const home_menu = (
-    <Menu style={{ width: 140 }}>
-      <Menu.Item key="accountInfo">
-        <RouterLink to="/account-info" />
-        <UserOutlined />
-        账户信息
-      </Menu.Item>
-      <Menu.Item key="myOrders">
-        <RouterLink to="/account-order-info" />
-        <OrderedListOutlined />
-        我的订单
-      </Menu.Item>
-      <Menu.Item key="usageDetails">
-        <RouterLink to="/account-usage-details" />
-        <FileTextOutlined />
-        使用明细
-      </Menu.Item>
-      <Menu.Item key="logout" onClick={handleLogout}>
-        <LogoutOutlined />
-        退出登录
-      </Menu.Item>
-    </Menu>
-  );
-
   return (
-    <Header
-      className="site-layout-background"
-      style={{
-        padding: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-    >
-      {/* Logo 和法查查文本 */}
-      <div className="logo" style={{ paddingLeft: 24 }}>
-        {/* <h2>法查查</h2> */}
-      </div>
-      {/* 用户头像和欢迎文本 */}
-      {shouldShowBackButton && (
-        <Button
-          onClick={() => navigate("/user-index")}
-          style={{ marginLeft: "auto", marginRight: "20px" }}
-        >
-          返回首页
-        </Button>
-      )}
-
-      <div style={{ display: "flex", alignItems: "center", paddingRight: 24 }}>
-        {/* 下拉菜单 */}
-        <div
-          style={{
-            color: "#FFD700", // Golden color
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-          }}
-          onClick={showVIPModal}
-        >
-          <CrownOutlined style={{ marginRight: 5 }} /> VIP 权益
-        </div>
-        <span style={{ margin: "0 8px", color: "#ddd" }}>|</span>
-        <BookOutlined style={{ marginRight: 5 }} /> 操作手册 |
-        <span
-          onClick={showContactModal}
-          style={{
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            margin: "0 5px",
-          }}
-        >
-          <CustomerServiceOutlined style={{ marginRight: 3 }} /> 联系客服 ｜
-        </span>
-        <UserOutlined style={{ marginLeft: 5, marginRight: 1 }} />
-        <Dropdown
-          overlay={home_menu}
-          trigger={["hover"]}
-          placement="bottomCenter"
-        >
-          <span style={{ cursor: "pointer" }}>
-            <b>{welcomeUserName}</b>{" "}
-            <DownCircleOutlined style={{ marginLeft: 2 }} />
-          </span>
-        </Dropdown>
-      </div>
-
-      <Modal
-        title="VIP 权益"
-        visible={isVIPModalVisible}
-        onOk={handleVIPOk}
-        onCancel={handleVIPCancel}
-        footer={null} // Hide default footer if you're providing your own buttons
-        width={760} // You may need to adjust the width depending on your content
-      >
-        <Row gutter={16}>
-          <Col span={6}>
-            <Card
-              title={
-                <>
-                  <CrownOutlined style={{ color: "gold" }} /> VIP年度权益
-                </>
-              }
-              bordered={false}
-            >
-              <p>按年购买，更大优惠</p>
-              <p>¥ 10000/年</p>
-              <InputNumber
-                min={1}
-                max={100000}
-                defaultValue={1}
-                style={{ width: "100%" }}
-              />
-              <Button type="primary" style={{ marginTop: 16 }}>
-                立即支付
-              </Button>
-              <p>注: 有效期内 10000次/年</p>
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              title={
-                <>
-                  <CrownOutlined style={{ color: "gold" }} /> VIP包月权益
-                </>
-              }
-              bordered={false}
-            >
-              <p>按月购买，省时省心</p>
-              <p>¥ 1000/月</p>
-              {/* Use InputNumber for numeric input */}
-              <InputNumber
-                min={1}
-                max={10000}
-                defaultValue={1}
-                style={{ width: "100%" }}
-              />
-              <Button type="primary" style={{ marginTop: 16 }}>
-                立即支付
-              </Button>
-              <p>注: 有效期内 800次/月</p>
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              title={
-                <>
-                  <CrownOutlined style={{ color: "gold" }} /> 次数权益
-                </>
-              }
-              bordered={false}
-            >
-              <p>按需购买，随用随购</p>
-              <p>¥ 3/次</p>
-              {/* Use InputNumber for numeric input */}
-              <InputNumber
-                min={1}
-                max={100000}
-                defaultValue={1}
-                style={{ width: "100%" }}
-              />
-              <Button type="primary" style={{ marginTop: 16 }}>
-                立即支付
-              </Button>
-              <p>注：主体信息核查功能每核查1个主体按1次计算</p>
-            </Card>
-          </Col>
-          <Col span={6}>
-            {/* Assuming this is the card to the far right */}
-            <Card bordered={false} className="vip-action-card">
-              <h3>高级VIP权益</h3>
-              <p>量身定制，批量购买享更多优惠</p>
-              <div className="vip-action-description">
-                {/* Add any additional descriptive text here */}
-                <p>专属客户经理为您量身定制需求</p>
-              </div>
-              <Button type="primary" className="vip-action-button">
-                联系商务
-              </Button>
-            </Card>
-          </Col>
-        </Row>
-      </Modal>
-
-      <Modal
-        title="联系客服"
-        visible={isContactVisible}
-        onOk={handleContactOk}
-        onCancel={handleContactCancel}
-        footer={null} // 如果不需要默认的底部按钮，可以设置为null
-      >
-        <img src={WechatImage} alt="WeChat QR Code" style={{ width: "60%" }} />
-      </Modal>
-    </Header>
+    <div>
+    </div>
   );
 }
 
